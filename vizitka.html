@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Егор — визитка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Playfair+Display:wght@400;600&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0d0b0a;
+    --panel:     #17130f;
+    --side:      #0f1a19;
+    --gold:      #c8a24c;
+    --gold-soft: #8d7336;
+    --text:      #e6dbc3;
+    --muted:     #a39880;
+    --font-title: 'Playfair Display SC', Georgia, 'Times New Roman', serif;
+    --font-text:  'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-label: 'Oswald', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+    background:
+      radial-gradient(ellipse at 50% 0%, #2a1f12 0%, transparent 60%),
+      repeating-linear-gradient(45deg, rgba(200,162,76,.035) 0 2px, transparent 2px 14px),
+      var(--bg);
+    color: var(--text);
+    font-family: var(--font-text);
+  }
+
+  .card {
+    position: relative;
+    width: 100%;
+    max-width: 860px;
+    background: var(--panel);
+    border: 1px solid var(--gold-soft);
+    box-shadow: 0 0 0 6px var(--panel), 0 0 0 7px var(--gold-soft), 0 30px 80px rgba(0,0,0,.7);
+  }
+
+  .card::before, .card::after {
+    content: "";
+    position: absolute;
+    width: 34px; height: 34px;
+    border: 2px solid var(--gold);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .card::before { top: -9px; left: -9px; border-right: 0; border-bottom: 0; }
+  .card::after  { bottom: -9px; right: -9px; border-left: 0; border-top: 0; }
+
+  header {
+    position: relative;
+    padding: 34px 40px 30px;
+    text-align: right;
+    background:
+      linear-gradient(180deg, rgba(200,162,76,.10), transparent),
+      #110e0b;
+    border-bottom: 1px solid var(--gold-soft);
+  }
+  header::before, header::after {   /* двойные линии как в образце */
+    content: "";
+    position: absolute;
+    left: 40px; right: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-soft) 15%, var(--gold-soft) 85%, transparent);
+  }
+  header::before { top: 14px; }
+  header::after  { bottom: 12px; }
+
+
+  .logo {
+    position: absolute;
+    left: 40px; top: 50%;
+    transform: translateY(-50%);
+    width: 72px; height: 72px;
+    display: grid; place-items: center;
+    border: 1px solid var(--gold);
+    transform: translateY(-50%) rotate(45deg);   /* ромб */
+    overflow: hidden;
+    background: #0b0908;
+  }
+  .logo img {
+    width: 141%; height: 141%;
+    object-fit: cover;
+    transform: rotate(-45deg);
+  }
+  .logo span {
+    transform: rotate(-45deg);
+    font-family: var(--font-label);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold-soft);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .name {
+    font-family: var(--font-title);
+    font-size: clamp(30px, 6vw, 46px);
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-shadow: 0 0 18px rgba(200,162,76,.25);
+  }
+  .name b { font-weight: 900; }
+  .name .surname { font-weight: 400; color: var(--text); }
+  .role {
+    margin-top: 6px;
+    font-family: var(--font-label);
+    font-size: 13px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .body { display: grid; grid-template-columns: 270px 1fr; }
+
+  aside {
+    background:
+      linear-gradient(180deg, rgba(200,162,76,.06), transparent 40%),
+      var(--side);
+    padding: 34px 24px 36px;
+    border-right: 1px solid var(--gold-soft);
+  }
+
+  .photo {
+    width: 150px; height: 150px;
+    margin: 0 auto 28px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 0 5px var(--side), 0 0 0 6px var(--gold-soft);
+    overflow: hidden;
+    display: grid; place-items: center;
+    background: #0b0908;
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .photo span {
+    font-family: var(--font-label);
+    font-size: 11px; letter-spacing: 2px;
+    color: var(--gold-soft);
+    text-align: center;
+  }
+
+  .side-title, h2 {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 500;
+  }
+  .side-title {
+    font-size: 13px;
+    color: var(--gold);
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--gold-soft);
+  }
+
+  .contact { margin-bottom: 18px; }
+  .contact dt {
+    font-family: var(--font-label);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .contact dd { font-size: 14px; color: var(--text); line-height: 1.5; word-break: break-word; }
+  .contact a { color: var(--text); text-decoration: none; border-bottom: 1px dotted var(--gold-soft); }
+  .contact a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+  main { padding: 34px 40px 40px; }
+
+  h2 {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 17px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  h2::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold-soft), transparent);
+  }
+  h2::before {
+    content: "";
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  p { font-size: 15px; line-height: 1.75; color: var(--text); margin-bottom: 34px; }
+
+  ul { list-style: none; }
+  li {
+    position: relative;
+    padding: 9px 0 9px 28px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(141,115,54,.25);
+  }
+  li:last-child { border-bottom: 0; }
+  li::before {            /* «галочка» в ромбе */
+    content: "◆";
+    position: absolute;
+    left: 2px; top: 10px;
+    font-size: 11px;
+    color: var(--gold);
+  }
+
+  footer {
+    padding: 14px 40px;
+    text-align: center;
+    font-family: var(--font-label);
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    border-top: 1px solid var(--gold-soft);
+  }
+
+  @media (max-width: 680px) {
+    .body { grid-template-columns: 1fr; }
+    aside { border-right: 0; border-bottom: 1px solid var(--gold-soft); }
+    header { text-align: center; padding-top: 110px; }
+    .logo { left: 50%; top: 52px; transform: translate(-50%, -50%) rotate(45deg); }
+    main { padding: 28px 24px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<article class="card">
+
+  <header>
+    <div class="logo">
+    </div>
+
+    <h1 class="surname"><b>Мухин</b> <span class="name">Егор</span></h1>
+  </header>
+
+  <div class="body">
+
+    <aside>
+      <div class="photo">
+        <img src="1000014645.jpeg">
+      </div>
+
+      <div class="side-title">Контакты</div>
+
+      <dl>
+        <div class="contact">
+          <dt>Санкт- Петербург</dt>
+          <dd>Санкт- Петербург,<br>Крапивный пер. дом 5</dd>
+        </div>
+        <div class="contact">
+          <dt>Телефон</dt>
+          <dd>+7 (966) 922-13-45</dd>
+        </div>
+        <div class="contact">
+          <dt>Электронная почта</dt>
+          <dd><a href="mailto:egormukhin2007@gmail.com">egormukhin2007@gmail.com</a></dd>
+        </div>
+        <div class="contact">
+          <dt>GitHub / Профиль</dt>
+          <dd><a href="https://github.com/Egor8901" target="_blank" rel="noopener">https://github.com/Egor8901</a></dd>
+        </div>
+      </dl>
+    </aside>
+
+    <main>
+      <h2>О себе</h2>
+      <p>
+        Я студент СПБИЭУ, группы ИР11-26-11.
+        Изучаю основы администрирования ОС, работу в Git и современную вёрстку веб- интерфейсов по спецификациям HTML и CSS. Так же в свободное от дел время практикуюсь в 3д и создании игровых модификаций
+
+      </p>
+
+      <h2>Ключевые навыки</h2>
+      <ul>
+        <li>Командная строка Linux</li>
+        <li>Блочная модель CSS и разметка HTML</li>
+        <li>Редактор VS Code</li>
+        <li>Работа в программе Blender</li>
+      </ul>
+    </main>
+
+  </div>
+
+  <footer>◆ &nbsp; Егор &nbsp; ◆</footer>
+
+</article>
+
+</body>
+</html>
